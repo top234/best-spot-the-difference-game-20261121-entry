@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spot the Difference — Pasar Malam &amp; More</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <div id="hudRoot"></div>
+
+  <div id="titleScreen">
+    <h1>🔍 SPOT THE DIFFERENCE</h1>
+    <p class="tagline">Pasar Malam &amp; More — two pictures, a handful of secrets</p>
+    <p id="titleTotal"></p>
+    <div class="title-cards" id="titleCards"></div>
+    <div>
+      <button class="btn primary" id="playBtn" type="button">▶ Play from Scene 1</button>
+      <button class="btn" id="howBtn" type="button">How to play</button>
+    </div>
+    <div id="howCard" class="hidden">
+      <b>How to play.</b> Two pictures sit side by side — they look the same, but
+      a few things are different. Click or tap a difference on either picture to
+      circle it. Find them all before the timer runs out.<br>
+      <b>Keyboard:</b> arrow keys move the golden crosshair, Enter marks the spot,
+      H asks for a hint (3 per scene, −25 points), M turns the magnifier on and off.<br>
+      <b>Scoring:</b> +100 per find, streak and speed bonuses, −10 for a wrong click.
+      Three stars if you beat the par time. Five scenes, 38 differences — good hunting!
+    </div>
+  </div>
+
+  <div id="gameArea" class="hidden">
+    <div class="scene-head">
+      <h2 id="sceneTitle">Pasar Malam</h2>
+      <p id="sceneSub"></p>
+    </div>
+    <div class="panels">
+      <div class="panel-wrap">
+        <h3>◀ ORIGINAL <span>picture A</span></h3>
+        <canvas class="game-panel" id="leftPanel" width="560" height="420"></canvas>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="panel-wrap">
+        <h3>SPOT THE CHANGES ▶ <span>picture B</span></h3>
+        <canvas class="game-panel" id="rightPanel" width="560" height="420"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<canvas id="lens" width="170" height="170"></canvas>
+<div id="toast" class="hidden"></div>
+<div id="overlay" class="hidden"></div>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

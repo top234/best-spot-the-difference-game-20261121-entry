@@ -1,0 +1,141 @@
+/* styles.css — warm night-market look: deep indigo, lantern gold, cream paper. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #141a2e;
+  color: #f5ead2;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+#app { max-width: 1220px; margin: 0 auto; padding: 10px 14px 20px; }
+
+.hud {
+  display: flex; align-items: center; gap: 18px;
+  background: linear-gradient(90deg, #1f2a4a, #3b2b52);
+  border: 2px solid #f7c948; border-radius: 14px;
+  padding: 10px 16px;
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 250px; }
+.brand-mark { font-size: 30px; }
+.brand-title { font-size: 21px; font-weight: bold; letter-spacing: 2px; color: #ffd93c; }
+.brand-sub { font-size: 12px; color: #d9c9a8; font-style: italic; }
+.hud-mid { flex: 1; display: flex; align-items: center; gap: 14px; }
+.counter {
+  font-size: 22px; font-weight: bold; color: #1c2733;
+  background: #ffd93c; border-radius: 10px; padding: 6px 14px; white-space: nowrap;
+}
+.timer-wrap {
+  position: relative; flex: 1; height: 26px;
+  background: #0f1424; border-radius: 13px; overflow: hidden; border: 1px solid #5a6a8a;
+}
+.timer-bar { height: 100%; background: linear-gradient(90deg, #3fae6a, #7dd3a8); transition: width 0.5s linear; }
+.timer-bar.low { background: linear-gradient(90deg, #d9382b, #ff7a5c); }
+.timer-text {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: bold; color: #fff; text-shadow: 0 1px 2px #000;
+}
+.hud-right { display: flex; align-items: center; gap: 8px; }
+.score-box {
+  display: flex; flex-direction: column; align-items: center;
+  background: #0f1424; border: 1px solid #5a6a8a; border-radius: 8px; padding: 3px 10px;
+}
+.score-label { font-size: 10px; letter-spacing: 1px; color: #9fb0cc; }
+.score-box span:last-child { font-size: 17px; font-weight: bold; color: #ffd93c; }
+.hud-btn {
+  font-family: inherit; font-size: 14px; cursor: pointer;
+  background: #2a3a5f; color: #f5ead2; border: 1px solid #7d8db0; border-radius: 8px; padding: 7px 10px;
+}
+.hud-btn:hover { background: #3a4f7d; }
+.hud-btn:disabled { opacity: 0.45; cursor: default; }
+.hud-btn.on { background: #f7c948; color: #1c2733; border-color: #f7c948; }
+
+.scene-strip { display: flex; gap: 8px; margin: 10px 0 4px; flex-wrap: wrap; }
+.scene-chip {
+  font-family: inherit; font-size: 13px; cursor: pointer;
+  background: #1f2a4a; color: #d9c9a8; border: 1px solid #5a6a8a; border-radius: 20px; padding: 5px 12px;
+}
+.scene-chip:hover { border-color: #ffd93c; color: #ffd93c; }
+.scene-chip.active { background: #ffd93c; color: #1c2733; border-color: #ffd93c; font-weight: bold; }
+.scene-chip.cleared { border-color: #3fae6a; }
+.help { font-size: 12.5px; color: #9fb0cc; margin: 2px 0 10px; font-style: italic; }
+
+.panels { display: flex; gap: 16px; align-items: flex-start; }
+.panel-wrap { flex: 1; position: relative; }
+.panel-wrap h3 {
+  margin: 0 0 6px; font-size: 15px; letter-spacing: 1px; color: #ffd93c;
+  display: flex; justify-content: space-between;
+}
+.panel-wrap h3 span { color: #9fb0cc; font-size: 12px; letter-spacing: 0; }
+canvas.game-panel {
+  width: 100%; height: auto; display: block;
+  border: 3px solid #f7c948; border-radius: 10px; background: #222;
+  cursor: crosshair; touch-action: manipulation;
+}
+.vs-badge {
+  align-self: center; font-size: 22px; font-weight: bold; color: #1c2733;
+  background: #ffd93c; border-radius: 50%; width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  margin-top: 40px;
+}
+.scene-head { margin: 2px 0 10px; }
+.scene-head h2 { margin: 0; font-size: 24px; color: #ffd93c; }
+.scene-head p { margin: 2px 0 0; font-size: 13.5px; color: #d9c9a8; font-style: italic; }
+
+#lens {
+  position: fixed; display: none; z-index: 40; pointer-events: none;
+  border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.6);
+}
+#toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%);
+  background: #3fae6a; color: #fff; font-size: 16px; font-weight: bold;
+  padding: 9px 18px; border-radius: 24px; z-index: 50; box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+#toast.bad { background: #d9382b; }
+.hidden { display: none !important; }
+
+/* Title screen */
+#titleScreen { text-align: center; padding: 18px 10px 8px; }
+#titleScreen h1 { font-size: 44px; margin: 6px 0 2px; color: #ffd93c; letter-spacing: 3px; }
+#titleScreen .tagline { font-size: 17px; font-style: italic; color: #d9c9a8; margin: 0 0 6px; }
+#titleTotal { font-size: 13.5px; color: #9fb0cc; margin-bottom: 16px; }
+.title-cards { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.title-card {
+  font-family: inherit; cursor: pointer; width: 216px; padding: 0 0 10px;
+  background: #1f2a4a; border: 2px solid #5a6a8a; border-radius: 12px; overflow: hidden; color: #f5ead2;
+}
+.title-card:hover { border-color: #ffd93c; transform: translateY(-2px); }
+.title-card canvas { width: 100%; height: auto; display: block; }
+.title-card span { display: block; font-size: 14px; font-weight: bold; margin-top: 8px; }
+.title-card em { display: block; font-size: 11.5px; color: #9fb0cc; font-style: italic; margin-top: 2px; padding: 0 8px; }
+.btn {
+  font-family: inherit; font-size: 16px; cursor: pointer;
+  background: #2a3a5f; color: #f5ead2; border: 1px solid #7d8db0; border-radius: 10px; padding: 10px 18px;
+}
+.btn:hover { background: #3a4f7d; }
+.btn.primary { background: #ffd93c; color: #1c2733; border-color: #ffd93c; font-weight: bold; }
+.btn.primary:hover { background: #ffe27a; }
+#playBtn { font-size: 19px; padding: 12px 30px; margin: 18px 6px 0; }
+#howBtn { margin-top: 18px; }
+#howCard {
+  max-width: 640px; margin: 14px auto 0; text-align: left;
+  background: #1f2a4a; border: 1px solid #5a6a8a; border-radius: 12px; padding: 12px 18px;
+  font-size: 14.5px; line-height: 1.55;
+}
+#howCard b { color: #ffd93c; }
+
+/* Overlay cards (scene complete / game complete / time up) */
+#overlay {
+  position: fixed; inset: 0; z-index: 30;
+  background: rgba(10, 14, 28, 0.82);
+  display: flex; align-items: center; justify-content: center;
+}
+.panel-card {
+  background: #1f2a4a; border: 2px solid #f7c948; border-radius: 16px;
+  padding: 26px 34px; text-align: center; max-width: 520px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+}
+.panel-card h2 { margin: 4px 0 8px; font-size: 30px; color: #ffd93c; }
+.panel-card p { font-size: 16px; margin: 6px 0; }
+.panel-card .muted { color: #9fb0cc; font-size: 13.5px; }
+.score-line { font-size: 18px !important; }
+.big-emoji { font-size: 44px; }
+.stars { font-size: 34px; color: #ffd93c; letter-spacing: 6px; margin: 8px 0; }
+.btn-row { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
